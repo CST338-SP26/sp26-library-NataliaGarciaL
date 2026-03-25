@@ -86,6 +86,7 @@ class BookTest {
 
     @Test
     void staticTest(){
+
         assertEquals(0, Book.ISBN_);
         assertEquals(1, Book.TITLE_);
         assertEquals(2, Book.SUBJECT_);
