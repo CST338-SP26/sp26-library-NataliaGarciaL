@@ -1,10 +1,9 @@
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -53,6 +52,7 @@ class BookTest {
         DueDate = LocalDate.of(2002, 1, 8);
         book1 = new Book(ISBN, Title, Subject, PageCount, Author, DueDate);
 
+
         //equality test---
         book2 = new Book("5297", "Count of Monte Cristo", "Adventure", 999, "Alexandrea Dumas", LocalDate.of(2021, 1, 1));
         book3 = new Book("5297", "Count of Monte Cristo", "Adventure", 999, "Alexandrea Dumas", LocalDate.of(2021, 1, 1));
@@ -65,6 +65,8 @@ class BookTest {
         PageCount_ = 235;
         Author_ = "Frank Herbert";
         DueDate_ = LocalDate.of(2020, 5, 12);
+
+        System.out.println(book1);
     }
 
     @AfterEach
@@ -177,4 +179,5 @@ class BookTest {
         assertNotEquals(DueDate, book4.getDueDate());
         assertEquals(DueDate_, book4.getDueDate());
     }
+
 }
