@@ -1,21 +1,24 @@
 /*
-    File Name: ReaderTest.java
-    Abstract: This file holds test variables and objects as well as
-              tests for the constructor, getters and setters, and other
-              methods found within Reader.java.
-    Author:Natalia Gracia
-    Date:3/16/26
- */
+   File Name: ReaderTest.java
+   Abstract: This file holds test variables and objects as well as
+             tests for the constructor, getters and setters, and other
+             methods found within Reader.java.
+   Author: Andrea Ultreras
+   Date: 02/22/21
+*/
 import Utilities.Code;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class ReaderTest {
     //DECLARE VARIABLES--------------------------------------------------------
@@ -25,17 +28,21 @@ class ReaderTest {
     Reader read3;
     Reader read4;
 
+
     int cardNumber;
     String name;
     String phone;
     List<Book> books;
+
 
     int cardNumber_;
     String name_;
     String phone_;
     List<Book> books_;
 
+
     Book bookTest;
+
 
     //CONSTRUCTOR & DESTRUCTOR-------------------------------------------------
     @BeforeEach
@@ -46,15 +53,18 @@ class ReaderTest {
         read = new Reader(0, "", "");
         assertNotNull(read);
 
+
         //field setting and getter test---
         cardNumber = 1;
         name = "Drew Clinkenbeard";
         phone = "831-582-4007";
         read1 = new Reader(cardNumber, name, phone);
 
+
         //equality test---
         read2 = new Reader(2, "Jennifer Clinkenbeard", "831-555-6284");
         read3 = new Reader(2, "Jennifer Clinkenbeard", "831-555-6284");
+
 
         //setter test---
         read4 = new Reader(cardNumber, name, phone);
@@ -62,10 +72,13 @@ class ReaderTest {
         name_ = "Monte Ray";
         phone_ = "555-555-4444";
 
+
         //other variable declarations---
         bookTest = new Book("5297", "Count of Monte Cristo", "Adventure", 999, "Alexandrea Dumas", LocalDate.of(2021, 1, 1));
 
+
     }
+
 
     @AfterEach
     void tearDown() {
@@ -84,6 +97,7 @@ class ReaderTest {
         books_ = null;
     }
 
+
     //GETTERS AND SETTERS------------------------------------------------------
     @Test
     void getCardNumber() {
@@ -92,12 +106,14 @@ class ReaderTest {
         assertEquals(read2.getCardNumber(), read3.getCardNumber());     //equality test
     }
 
+
     @Test
     void setCardNumber() {
         read4.setCardNumber(cardNumber_);                   //set value to new parameter, setter test
         assertNotEquals(cardNumber, read4.getCardNumber()); //setter test
         assertEquals(cardNumber_, read4.getCardNumber());   //setter test
     }
+
 
     @Test
     void getName() {
@@ -106,12 +122,14 @@ class ReaderTest {
         assertEquals(read2.getName(), read3.getName());
     }
 
+
     @Test
     void setName() {
         read4.setName(name_);
         assertNotEquals(name, read4.getName());
         assertEquals(name_, read4.getName());
     }
+
 
     @Test
     void getPhone() {
@@ -120,6 +138,7 @@ class ReaderTest {
         assertEquals(read2.getPhone(), read3.getPhone());
     }
 
+
     @Test
     void setPhone() {
         read4.setPhone(phone_);
@@ -127,15 +146,15 @@ class ReaderTest {
         assertEquals(phone_, read4.getPhone());
     }
 
+
     @Test
     void getBooks() {
         assertEquals(new ArrayList<Book>(), read1.getBooks());  //use ArrayList to declare list as empty not null bc getBooks is empty not null
         read1.addBook(bookTest);                                //add a book to increase size, note: did not use books.add(bookTest)
         assertNotEquals(read1.getBooks(), read2.getBooks());    //has (1,0)
         assertEquals(read2.getBooks(), read3.getBooks());       //has (0,0)
-
-
     }
+
 
     @Test
     void setBooks() {
@@ -145,6 +164,7 @@ class ReaderTest {
         assertNotEquals(books, read4.getBooks()); //has (0,1)
         assertEquals(books_, read4.getBooks());   //has (1,1)
     }
+
 
     //OTHER FUNCTIONS----------------------------------------------------------
     @Test
@@ -156,6 +176,7 @@ class ReaderTest {
         assertEquals(reader.addBook(bookTest), Code.BOOK_ALREADY_CHECKED_OUT_ERROR);    //shows that the book was already added
     }
 
+
     @Test
     void removeBook() {
         Reader reader = new Reader(0, "", "");
@@ -164,6 +185,7 @@ class ReaderTest {
         assertEquals(reader.removeBook(bookTest), Code.SUCCESS);
     }
 
+
     @Test
     void hasBook() {
         Reader reader = new Reader(0, "", "");
@@ -171,6 +193,7 @@ class ReaderTest {
         reader.addBook(bookTest);
         assertTrue(reader.hasBook(bookTest));
     }
+
 
     @Test
     void getBookCount() {

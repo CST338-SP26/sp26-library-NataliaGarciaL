@@ -1,21 +1,24 @@
 /*
-    File Name: ShelfTest.java
-    Abstract: This file holds test variables and objects as well as
-              tests for the constructor, getters and setters, and other
-              methods found within Shelf.java.
-    Author: Natalia Garcia
-    Date: 03/01/26
- */
+   File Name: ShelfTest.java
+   Abstract: This file holds test variables and objects as well as
+             tests for the constructor, getters and setters, and other
+             methods found within Shelf.java.
+   Author: Andrea Ultreras
+   Date: 03/01/21
+*/
 import Utilities.Code;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Random;
 
+
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class ShelfTest {
     Shelf shelf;
@@ -27,6 +30,7 @@ class ShelfTest {
     Book book;
     Book book1;
 
+
     //CONSTRUCTOR & DESTRUCTOR-------------------------------------------------
     @BeforeEach
     void setUp() {
@@ -36,21 +40,26 @@ class ShelfTest {
         shelf = new Shelf();
         assertNotNull(shelf);
 
+
         //field setting and getter test---
         books = new HashMap<>();
         shelf1 = new Shelf();
+
 
         //equality test---
         shelf2 = new Shelf();
         shelf3 = new Shelf();
 
+
         //setter test---
         shelf4 = new Shelf();
+
 
         //other variables---
         book = new Book("34-w-34", "Dune", "sci-fi", 235, "Frank Herbert", LocalDate.of(2021,2,10));
         book1 = new Book("5297", "Count of Monte Cristo", "Adventure", 999, "Alexandrea Dumas", LocalDate.of(2021, 1, 1));
     }
+
 
     @AfterEach
     void tearDown() {
@@ -64,6 +73,7 @@ class ShelfTest {
         book1 = null;
     }
 
+
     //GETTERS & SETTERS--------------------------------------------------------
     @Test
     void getShelfNumber() {
@@ -75,12 +85,14 @@ class ShelfTest {
         assertEquals(shelf2.getShelfNumber(), shelf3.getShelfNumber());     //equality test
     }
 
+
     @Test
     void setShelfNumber() {
         shelf4.setShelfNumber(1);                               //set value to new parameter, setter test
         assertNotEquals(0, shelf4.getShelfNumber());  //setter test
         assertEquals(1, shelf4.getShelfNumber());       //setter test
     }
+
 
     //---------------------------------
     @Test
@@ -93,6 +105,7 @@ class ShelfTest {
         assertEquals(shelf2.getSubject(), shelf3.getSubject());
     }
 
+
     @Test
     void setSubject() {
         shelf4.setSubject("education");
@@ -100,11 +113,13 @@ class ShelfTest {
         assertEquals("education", shelf4.getSubject());
     }
 
+
     //---------------------------------
     @Test
     void getBooks() {
         HashMap<Book, Integer> books1 = new HashMap<>();
         books1.put(book, 1);
+
 
         shelf1.setBooks(books);
         assertEquals(books, shelf1.getBooks());
@@ -114,15 +129,18 @@ class ShelfTest {
         assertEquals(shelf2.getBooks(), shelf3.getBooks());
     }
 
+
     @Test
     void setBooks() {
         HashMap<Book, Integer> books1 = new HashMap<>();
         books1.put(book, 1);
 
+
         shelf4.setBooks(books1);
         assertNotEquals(books, shelf4.getBooks());
         assertEquals(books1, shelf4.getBooks());
     }
+
 
     //OTHER FUNCTIONS----------------------------------------------------------
     @Test
@@ -134,11 +152,13 @@ class ShelfTest {
             shelf.addBook(book);
         }
 
+
         assertEquals(count, shelf.getBookCount(book));
         shelf.removeBook(book);
         assertNotEquals(count, shelf.getBookCount(book));
         assertNotEquals(count, shelf.getBookCount(book1));
     }
+
 
     @Test
     void addBook() {
@@ -148,6 +168,8 @@ class ShelfTest {
         assertEquals(Code.SUCCESS, shelf.addBook(book));             //add the book again
         assertEquals(2, shelf.getBookCount(book));           //check the count
         assertEquals(Code.SHELF_SUBJECT_MISMATCH_ERROR, shelf.addBook(book1));  //adds a mismatching book to shelf
+
+
     }
     @Test
     void removeBook() {
@@ -160,6 +182,7 @@ class ShelfTest {
         assertEquals(Code.BOOK_NOT_IN_INVENTORY_ERROR, shelf.removeBook(book));    //removes book with inventory 0
         assertEquals(0, shelf.getBookCount(book));      //check the count
     }
+
 
     @Test
     void listBooks() {
